@@ -113,39 +113,44 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisCount: 3,
               ),
               itemBuilder: (context, index) {
-                return Container(
-                  height: 400,
-                  width: 400,
-                  alignment: Alignment.center,
-                  margin: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 50,
-                        margin: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(
-                              10,
+                return InkWell(
+                  onTap: () {
+                    Get.toNamed('/quize');
+                  },
+                  child: Container(
+                    height: 400,
+                    width: 400,
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          margin: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(
+                                10,
+                              ),
                             ),
-                          ),
-                          image: DecorationImage(
-                            image: AssetImage(
-                              "${homeController.imageList[index]['images']}",
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "${homeController.imageList[index]['images']}",
+                              ),
+                              fit: BoxFit.contain,
                             ),
-                            fit: BoxFit.contain,
                           ),
                         ),
-                      ),
-                      Text("${homeController.imageList[index]['name']}"),
-                    ],
+                        Text("${homeController.imageList[index]['name']}"),
+                      ],
+                    ),
                   ),
                 );
               },

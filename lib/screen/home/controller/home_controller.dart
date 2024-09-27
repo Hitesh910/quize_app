@@ -54,7 +54,7 @@ class HomeController extends GetxController
 
   Future<void> getData()
   async {
-  model =await ApiHelper.helper.getData();
+  model = await ApiHelper.helper.getData();
   print("=================== modeðl list ${model!.resultsList![0].category}");
   }
 }
