@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    homeController.getData();
+    // homeController.getData();
   }
 
   @override
@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Stack(
             children: [
               Container(
-                height: MediaQuery.sizeOf(context).height * 0.24,
+                height: MediaQuery.sizeOf(context).height * 0.25,
                 width: MediaQuery.sizeOf(context).width,
                 padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.all(0),
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   heightFactor: 1.07,
                   child: Container(
                     height: MediaQuery.sizeOf(context).height * 0.29,
-                    width: MediaQuery.sizeOf(context).width,
+                    width: MediaQuery.sizeOf(context).width * 0.92,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage("assets/images/ad.png"),
@@ -96,8 +96,12 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  "Top category",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  "Top category Question",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "barlow",
+                  ),
                 ),
                 OutlinedButton(
                   onPressed: () {},
@@ -116,6 +120,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 return InkWell(
                   onTap: () {
                     Get.toNamed('/quize');
+                    homeController.getData(homeController.imageList[index]['code']);
+                    // print("======================= id = ${ homeController.getData(homeController.imageList[index]['code'])}");
                   },
                   child: Container(
                     height: 400,

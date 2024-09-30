@@ -30,7 +30,7 @@ class ResultsModel {
         category: m1['category'],
         question: m1['question'],
         correct_answer: m1['correct_answer'],
-        incorrect_answer: m1['incorrect_answer']);
+        incorrect_answer: m1['incorrect_answers']);
   }
 }
 

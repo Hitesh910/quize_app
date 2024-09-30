@@ -5,56 +5,71 @@ import '../../../utils/api_helper.dart';
 
 class HomeController extends GetxController
 {
-  QuizeModel? model = QuizeModel();
+  Future<QuizeModel?>? model;
   // RxList<QuizeModel> quizeList = <QuizeModel>[].obs;
+
+  RxList<ResultsModel>? resultList = <ResultsModel>[].obs;
+  RxInt count = 0.obs;
+
 
   List<Map> imageList = [
     {
       "images" : "assets/images/general.png",
       "name" : "General",
-      "code" : "9",
+      "code" : 9,
     },
     {
       "images" : "assets/images/books.png",
       "name" : "Books",
-      "code" : "10",
+      "code" : 10,
     },
     {
       "images" : "assets/images/film.png",
       "name" : "Films",
-      "code" : "11",
+      "code" : 11,
     },
     {
       "images" : "assets/images/music.png",
       "name" : "Musics",
-      "code" : "12",
+      "code" : 12,
     },
     {
       "images" : "assets/images/theaters.png",
       "name" : "Theaters",
-      "code" : "13",
+      "code" : 13,
     },
     {
       "images" : "assets/images/television.png",
       "name" : "Television",
-      "code" : "14",
+      "code" : 14,
     },
     {
       "images" : "assets/images/videogames.png",
       "name" : "Video games",
-      "code" : "15",
+      "code" : 15,
     },
     {
       "images" : "assets/images/boardgames.png",
       "name" : "Board games",
-      "code" : "16",
+      "code" : 16,
     },
   ];
 
 
-  Future<void> getData()
-  async {
-  model = await ApiHelper.helper.getData();
-  print("=================== modeðl list ${model!.resultsList![0].category}");
+ void getData(int no)
+   {
+  model =  ApiHelper.helper.getData(no);
+  // print("=================== modeðl list ${model!.resultsList![0].category}");
+  }
+
+  void addData()
+  {
+    print("====================== only data ${resultList!.length}");
+    print("====================== only data ${resultList![0].incorrect_answer![0]}");
+  }
+
+  void countData()
+  {
+    count++;
   }
 }
