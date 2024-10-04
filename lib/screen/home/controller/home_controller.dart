@@ -5,7 +5,7 @@ import '../../../utils/api_helper.dart';
 
 class HomeController extends GetxController
 {
-  Future<QuizeModel?>? model;
+  QuizeModel? model;
   // RxList<QuizeModel> quizeList = <QuizeModel>[].obs;
 
   RxList<ResultsModel>? resultList = <ResultsModel>[].obs;
@@ -56,9 +56,16 @@ class HomeController extends GetxController
   ];
 
 
- void getData(int no)
-   {
-  model =  ApiHelper.helper.getData(no);
+ Future<void> getData(int no)
+   async {
+   resultList!.clear();
+  model =await  ApiHelper.helper.getData(no);
+  resultList!.addAll(model!.resultsList!);
+
+   print(" ============================ question data${resultList![0].question}");
+   print(" ============================ question data${resultList![1].question}");
+   print(" ============================ question data${resultList![2].question}");
+   print(" ============================ question data${resultList![3].question}");
   // print("=================== modeðl list ${model!.resultsList![0].category}");
   }
 
@@ -71,5 +78,6 @@ class HomeController extends GetxController
   void countData()
   {
     count++;
+    resultList!.shuffle();
   }
 }

@@ -33,5 +33,3 @@ class ResultsModel {
         incorrect_answer: m1['incorrect_answers']);
   }
 }
-
-class AnswerModel {}

@@ -121,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     Get.toNamed('/quize');
                     homeController.getData(homeController.imageList[index]['code']);
+                    // homeController.count.value = 0;
                     // print("======================= id = ${ homeController.getData(homeController.imageList[index]['code'])}");
                   },
                   child: Container(

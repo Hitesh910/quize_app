@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key});
@@ -28,6 +29,9 @@ class _ResultScreenState extends State<ResultScreen> {
                       fit: BoxFit.cover
                     ),
                   ),
+                  child: IconButton(onPressed: () {
+                    Get.toNamed("/home");
+                  }, icon: Icon(Icons.home)),
                 )
               ],
             ),
