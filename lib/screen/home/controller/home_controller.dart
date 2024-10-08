@@ -13,6 +13,9 @@ class HomeController extends GetxController
   RxList? optionList = [].obs;
   RxInt count = 0.obs;
   RxInt index = 0.obs;
+  RxList<ResultModelOn> allData = <ResultModelOn>[].obs;
+  RxnString groupNo = RxnString();
+  RxInt result = 0.obs;
 
 
   List<Map> imageList = [
@@ -74,42 +77,41 @@ class HomeController extends GetxController
       l1.shuffle();
 
       ResultModelOn? model = ResultModelOn(questions: question,ans: ans,optionList: l1);
-
+      allData.add(model);
     }
-
-   print(" ============================ question data${resultList![0].question}");
-   print(" ============================ question data${resultList![1].question}");
-   print(" ============================ question data${resultList![2].question}");
-   print(" ============================ question data${resultList![3].question}");
-  // print("=================== modeðl list ${model!.resultsList![0].category}");
   }
 
-  void addData()
-  {
-    print("====================== only data ${resultList!.length}");
-    print("====================== only data ${resultList![0].incorrect_answer![0]}");
-  }
+  // void addData()
+  // {
+  //   print("====================== only data ${resultList!.length}");
+  //   print("====================== only data ${resultList![0].incorrect_answer![0]}");
+  // }
 
   void countData()
   {
+    if(allData[count.value].ans == groupNo.value)
+      {
+      result.value =  result.value+1;
+      }
     count++;
     resultList!.shuffle();
+    print("================= score ${result}");
   }
 
-  void optionChange(index)
-  {
-    optionList!.clear();
-   optionList!.add(resultList![index].incorrect_answer![0]);
-   optionList!.add(resultList![index].incorrect_answer![1]);
-   optionList!.add(resultList![index].incorrect_answer![2]);
-   optionList!.add(resultList![index].correct_answer);
-
-   optionList!.shuffle();
-
-   print("======================== question ${resultList![index].question}");
-   print("======================== option ${optionList![0]}");
-   print("======================== option ${optionList![1]}");
-   print("======================== option ${optionList![2]}");
-   print("======================== option ${optionList![3]}");
-  }
+  // void optionChange(index)
+  // {
+  //   optionList!.clear();
+  //  optionList!.add(resultList![index].incorrect_answer![0]);
+  //  optionList!.add(resultList![index].incorrect_answer![1]);
+  //  optionList!.add(resultList![index].incorrect_answer![2]);
+  //  optionList!.add(resultList![index].correct_answer);
+  //
+  //  optionList!.shuffle();
+  //
+  //  print("======================== question ${resultList![index].question}");
+  //  print("======================== option ${optionList![0]}");
+  //  print("======================== option ${optionList![1]}");
+  //  print("======================== option ${optionList![2]}");
+  //  print("======================== option ${optionList![3]}");
+  // }
 }

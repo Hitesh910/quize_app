@@ -119,7 +119,9 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
+                    print("============================== 0");
                     Get.toNamed('/quize');
+                    Navigator.pushNamed(context, '/quize');
                     homeController.getData(homeController.imageList[index]['code']);
                     // homeController.count.value = 0;
                     // print("======================= id = ${ homeController.getData(homeController.imageList[index]['code'])}");

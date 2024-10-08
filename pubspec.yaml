@@ -37,8 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   http: ^1.2.2
   get: ^4.6.6
-  internet_detector: ^1.0.4
-  connectivity_plus: ^6.0.5
+#  internet_detector: ^1.0.4
+#  connectivity_plus: ^6.0.5
 
 dev_dependencies:
   flutter_test:

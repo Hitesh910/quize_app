@@ -15,310 +15,319 @@ class QuizeScreen extends StatefulWidget {
 class _QuizeScreenState extends State<QuizeScreen> {
   HomeController controller = Get.put(HomeController());
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xff141a33),
-        // appBar: AppBar(title: const Text("Quize"),),
-        body: Obx(
-          () {
-            return controller.resultList!.isEmpty
-                ? const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ),
-                  )
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 40,
+      backgroundColor: const Color(0xff141a33),
+      // appBar: AppBar(title: const Text("Quize"),),
+      body: Obx(
+        () {
+          return controller.allData.isEmpty
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      const Text(
+                        "Mathematics Quize",
+                        style:
+                            TextStyle(color: Color(0xff343a50), fontSize: 20),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Question ${controller.count.value + 1}/10",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
                         ),
-                        const Text(
-                          "Mathematics Quize",
-                          style:
-                              TextStyle(color: Color(0xff343a50), fontSize: 20),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: List.generate(
+                          controller.resultList!.length,
+                          (index) {
+                            return Container(
+                              height: 5,
+                              width: MediaQuery.sizeOf(context).width * 0.07,
+                              padding: const EdgeInsets.all(10),
+                              margin: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(5),
+                                ),
+                                color: Colors.grey.shade400,
+                              ),
+                            );
+                          },
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Question ${controller.count.value + 1}/10",
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Text(
+                          "${controller.allData[controller.count.value].questions}",
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 25,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          // textAlign: TextAlign.justify,
+                          // maxLines: 1,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Container(
+                        height: 50,
+                        width: MediaQuery.sizeOf(context).width,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          border: Border.all(
+                            color: Colors.white,
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: List.generate(
-                            controller.resultList!.length,
-                            (index) {
-                              return Container(
-                                height: 5,
-                                width: MediaQuery.sizeOf(context).width * 0.07,
-                                padding: const EdgeInsets.all(10),
-                                margin: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(5),
-                                  ),
-                                  color: Colors.grey.shade400,
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Text(
-                            "${controller.resultList![controller.count.value].question}",
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            // textAlign: TextAlign.justify,
-                            maxLines: 1,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        Container(
-                          height: 50,
-                          width: MediaQuery.sizeOf(context).width,
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(5),
-                            ),
-                            border: Border.all(
-                              color: Colors.green,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  "${controller.resultList![controller.count.value].correct_answer}",
-                                  style: TextStyle(
-                                    color: Colors.green.shade800,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w900,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  maxLines: 1,
-                                ),
-                              ),
-                              Radio(
-                                value: 1,
-                                groupValue: 1,
-                                onChanged: (value) {},
-                                fillColor: WidgetStatePropertyAll(
-                                  Colors.green.shade800,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          height: 50,
-                          width: MediaQuery.sizeOf(context).width,
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(5),
-                            ),
-                            border: Border.all(
-                              color: Colors.white,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  "${controller.resultList![controller.count.value].incorrect_answer![0]}",
-                                  style: const TextStyle(
-                                    color: Colors.white54,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  maxLines: 1,
-                                ),
-                              ),
-                              Radio(
-                                value: 0,
-                                groupValue: 1,
-                                onChanged: (value) {},
-                              )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          height: 50,
-                          width: MediaQuery.sizeOf(context).width,
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(5),
-                            ),
-                            border: Border.all(
-                              color: Colors.white,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  "${controller.resultList![controller.count.value].incorrect_answer![1]}",
-                                  style: const TextStyle(
-                                    color: Colors.white54,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  maxLines: 1,
-                                ),
-                              ),
-                              Radio(
-                                value: 0,
-                                groupValue: 1,
-                                onChanged: (value) {},
-                              )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          height: 50,
-                          width: MediaQuery.sizeOf(context).width,
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(5),
-                            ),
-                            border: Border.all(
-                              color: Colors.white,
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  "${controller.resultList![controller.count.value].incorrect_answer![2]}",
-                                  style: const TextStyle(
-                                    color: Colors.white54,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  maxLines: 1,
-                                ),
-                              ),
-                              Radio(
-                                value: 0,
-                                groupValue: 1,
-                                onChanged: (value) {},
-                              )
-                            ],
-                          ),
-                        ),
-                        const Spacer(),
-                        Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            TextButton(
-                              onPressed: () {},
-                              child: const Row(
-                                children: [
-                                  Icon(
-                                    Icons.login,
-                                    color: Colors.white70,
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Text(
-                                    "Quit Quize",
-                                    style: TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ],
+                            Expanded(
+                              child: Text(
+                                "${controller.allData[controller.count.value].optionList![0]}",
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w900,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                maxLines: 1,
                               ),
                             ),
-                            InkWell(
-                              onTap: () {
-                                controller.countData();
-                                print(
-                                    "=================== counter ${controller.count.value}");
-                                controller.optionChange(controller.count.value);
-                                if (controller.count.value == 9) {
-                                  Get.toNamed("/result");
-                                  controller.count.value = 0;
-                                  print(
-                                      "====================== count home${controller.count.value}");
-                                }
+                            Radio(
+                              value: controller.allData[controller.count.value]
+                                  .optionList![0],
+                              groupValue: controller.groupNo.value,
+                              onChanged: (value) {
+                                controller.groupNo.value = value;
                               },
-                              child: Container(
-                                height:
-                                    MediaQuery.sizeOf(context).height * 0.06,
-                                width: MediaQuery.sizeOf(context).width * 0.45,
-                                alignment: Alignment.center,
-                                decoration: const BoxDecoration(
-                                  color: Color(0xff08d0f3),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 50,
+                        width: MediaQuery.sizeOf(context).width,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          border: Border.all(
+                            color: Colors.white,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "${controller.allData[controller.count.value].optionList![1]}",
+                                style: const TextStyle(
+                                  color: Colors.white54,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                maxLines: 1,
+                              ),
+                            ),
+                            Radio(
+                              value: controller.allData[controller.count.value]
+                                  .optionList![1],
+                              groupValue: controller.groupNo.value,
+                              onChanged: (value) {
+                                controller.groupNo.value = value;
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 50,
+                        width: MediaQuery.sizeOf(context).width,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          border: Border.all(
+                            color: Colors.white,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "${controller.allData[controller.count.value].optionList![2]}",
+                                style: const TextStyle(
+                                  color: Colors.white54,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                maxLines: 1,
+                              ),
+                            ),
+                            Radio(
+                              value: controller.allData[controller.count.value]
+                                  .optionList![2],
+                              groupValue: controller.groupNo.value,
+                              onChanged: (value) {
+                                controller.groupNo.value = value;
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 50,
+                        width: MediaQuery.sizeOf(context).width,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          border: Border.all(
+                            color: Colors.white,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "${controller.allData[controller.count.value].optionList![3]}",
+                                style: const TextStyle(
+                                  color: Colors.white54,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                maxLines: 1,
+                              ),
+                            ),
+                            Radio(
+                              value: controller.allData[controller.count.value]
+                                  .optionList![3],
+                              groupValue: controller.groupNo.value,
+                              onChanged: (value) {
+                                controller.groupNo.value = value;
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                      const Spacer(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(
+                            onPressed: () {},
+                            child: const Row(
+                              children: [
+                                Icon(
+                                  Icons.login,
+                                  color: Colors.white70,
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  "Quit Quize",
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 16,
                                   ),
                                 ),
-                                child: const Text(
-                                  "Next",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              if (controller.groupNo.value != null) {
+                                controller.countData();
+                                controller.groupNo.value = null;
+                              }
+                              // controller.optionChange(controller.count.value);
+                              if (controller.count.value == 9) {
+                                Get.toNamed("/result");
+                                controller.count.value = 0;
+                                print(
+                                    "====================== count home${controller.count.value}");
+                              }
+                            },
+                            child: Container(
+                              height: MediaQuery.sizeOf(context).height * 0.06,
+                              width: MediaQuery.sizeOf(context).width * 0.45,
+                              alignment: Alignment.center,
+                              decoration: const BoxDecoration(
+                                color: Color(0xff08d0f3),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
                                 ),
                               ),
-                            )
-                            // ElevatedButton(
-                            //   onPressed: () {},
-                            //   child: const Text("Next"),
-                            // )
-                          ],
-                        )
-                      ],
-                    ),
-                  );
-          },
-        ));
+                              child: const Text(
+                                "Next",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          )
+                          // ElevatedButton(
+                          //   onPressed: () {},
+                          //   child: const Text("Next"),
+                          // )
+                        ],
+                      )
+                    ],
+                  ),
+                );
+        },
+      ),
+    );
   }
 }
 // child: Padding(
