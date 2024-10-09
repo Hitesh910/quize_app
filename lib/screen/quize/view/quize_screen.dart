@@ -19,7 +19,6 @@ class _QuizeScreenState extends State<QuizeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff141a33),
-      // appBar: AppBar(title: const Text("Quize"),),
       body: Obx(
         () {
           return controller.allData.isEmpty
@@ -67,7 +66,9 @@ class _QuizeScreenState extends State<QuizeScreen> {
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(5),
                                 ),
-                                color: Colors.grey.shade400,
+                                color: controller.count.value <= index
+                                    ? Colors.grey.shade400
+                                    : Colors.green,
                               ),
                             );
                           },
@@ -85,176 +86,270 @@ class _QuizeScreenState extends State<QuizeScreen> {
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
-                          // textAlign: TextAlign.justify,
-                          // maxLines: 1,
                         ),
                       ),
                       const SizedBox(
                         height: 50,
                       ),
-                      Container(
-                        height: 50,
-                        width: MediaQuery.sizeOf(context).width,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(5),
-                          ),
-                          border: Border.all(
-                            color: Colors.white,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "${controller.allData[controller.count.value].optionList![0]}",
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w900,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                maxLines: 1,
-                              ),
+                      InkWell(
+                        onTap: () {
+                          controller.groupNo.value = controller
+                              .allData[controller.count.value].optionList![0];
+                        },
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.sizeOf(context).width,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(5),
                             ),
-                            Radio(
-                              value: controller.allData[controller.count.value]
-                                  .optionList![0],
-                              groupValue: controller.groupNo.value,
-                              onChanged: (value) {
-                                controller.groupNo.value = value;
-                              },
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 50,
-                        width: MediaQuery.sizeOf(context).width,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(5),
-                          ),
-                          border: Border.all(
-                            color: Colors.white,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "${controller.allData[controller.count.value].optionList![1]}",
-                                style: const TextStyle(
-                                  color: Colors.white54,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                maxLines: 1,
-                              ),
+                            border: Border.all(
+                              color: controller.groupNo.value ==
+                                      controller.allData[controller.count.value]
+                                          .optionList![0]
+                                  ? Colors.green
+                                  : Colors.white,
                             ),
-                            Radio(
-                              value: controller.allData[controller.count.value]
-                                  .optionList![1],
-                              groupValue: controller.groupNo.value,
-                              onChanged: (value) {
-                                controller.groupNo.value = value;
-                              },
-                            )
-                          ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "${controller.allData[controller.count.value].optionList![0]}",
+                                  style: TextStyle(
+                                    color: controller.groupNo ==
+                                            controller
+                                                .allData[controller.count.value]
+                                                .optionList![0]
+                                        ? Colors.green
+                                        : Colors.grey,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  maxLines: 1,
+                                ),
+                              ),
+                              Radio(
+                                value: controller
+                                    .allData[controller.count.value]
+                                    .optionList![0],
+                                groupValue: controller.groupNo.value,
+                                onChanged: (value) {
+                                  controller.groupNo.value = value;
+                                },
+                                fillColor: WidgetStatePropertyAll(
+                                  controller.groupNo ==
+                                          controller
+                                              .allData[controller.count.value]
+                                              .optionList![0]
+                                      ? Colors.green
+                                      : Colors.grey,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        height: 50,
-                        width: MediaQuery.sizeOf(context).width,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(5),
-                          ),
-                          border: Border.all(
-                            color: Colors.white,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "${controller.allData[controller.count.value].optionList![2]}",
-                                style: const TextStyle(
-                                  color: Colors.white54,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                maxLines: 1,
-                              ),
+                      InkWell(
+                        onTap: () {
+                          controller.groupNo.value = controller
+                              .allData[controller.count.value].optionList![1];
+                        },
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.sizeOf(context).width,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(5),
                             ),
-                            Radio(
-                              value: controller.allData[controller.count.value]
-                                  .optionList![2],
-                              groupValue: controller.groupNo.value,
-                              onChanged: (value) {
-                                controller.groupNo.value = value;
-                              },
-                            )
-                          ],
+                            border: Border.all(
+                              color: controller.groupNo ==
+                                      controller.allData[controller.count.value]
+                                          .optionList![1]
+                                  ? Colors.green
+                                  : Colors.white,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "${controller.allData[controller.count.value].optionList![1]}",
+                                  style: TextStyle(
+                                    color: controller.groupNo ==
+                                            controller
+                                                .allData[controller.count.value]
+                                                .optionList![1]
+                                        ? Colors.green
+                                        : Colors.white54,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  maxLines: 1,
+                                ),
+                              ),
+                              Radio(
+                                value: controller
+                                    .allData[controller.count.value]
+                                    .optionList![1],
+                                groupValue: controller.groupNo.value,
+                                onChanged: (value) {
+                                  controller.groupNo.value = value;
+                                },
+                                fillColor: WidgetStatePropertyAll(
+                                  controller.groupNo ==
+                                          controller
+                                              .allData[controller.count.value]
+                                              .optionList![1]
+                                      ? Colors.green
+                                      : Colors.grey,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        height: 50,
-                        width: MediaQuery.sizeOf(context).width,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(5),
+                      InkWell(
+                        onTap: () {
+                          controller.groupNo.value = controller
+                              .allData[controller.count.value].optionList![2];
+                        },
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.sizeOf(context).width,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(5),
+                            ),
+                            border: Border.all(
+                              color: controller.groupNo ==
+                                      controller.allData[controller.count.value]
+                                          .optionList![2]
+                                  ? Colors.green
+                                  : Colors.white,
+                            ),
                           ),
-                          border: Border.all(
-                            color: Colors.white,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "${controller.allData[controller.count.value].optionList![2]}",
+                                  style: TextStyle(
+                                    color: controller.groupNo ==
+                                            controller
+                                                .allData[controller.count.value]
+                                                .optionList![2]
+                                        ? Colors.green
+                                        : Colors.white54,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  maxLines: 1,
+                                ),
+                              ),
+                              Radio(
+                                value: controller
+                                    .allData[controller.count.value]
+                                    .optionList![2],
+                                groupValue: controller.groupNo.value,
+                                onChanged: (value) {
+                                  controller.groupNo.value = value;
+                                },
+                                fillColor: WidgetStatePropertyAll(
+                                  controller.groupNo ==
+                                          controller
+                                              .allData[controller.count.value]
+                                              .optionList![2]
+                                      ? Colors.green
+                                      : Colors.grey,
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "${controller.allData[controller.count.value].optionList![3]}",
-                                style: const TextStyle(
-                                  color: Colors.white54,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                maxLines: 1,
-                              ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          controller.groupNo.value = controller
+                              .allData[controller.count.value].optionList![3];
+                        },
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.sizeOf(context).width,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(5),
                             ),
-                            Radio(
-                              value: controller.allData[controller.count.value]
-                                  .optionList![3],
-                              groupValue: controller.groupNo.value,
-                              onChanged: (value) {
-                                controller.groupNo.value = value;
-                              },
-                            )
-                          ],
+                            border: Border.all(
+                              color: controller.groupNo ==
+                                      controller.allData[controller.count.value]
+                                          .optionList![3]
+                                  ? Colors.green
+                                  : Colors.white,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "${controller.allData[controller.count.value].optionList![3]}",
+                                  style: TextStyle(
+                                    color: controller.groupNo ==
+                                            controller
+                                                .allData[controller.count.value]
+                                                .optionList![3]
+                                        ? Colors.green
+                                        : Colors.white54,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  maxLines: 1,
+                                ),
+                              ),
+                              Radio(
+                                value: controller
+                                    .allData[controller.count.value]
+                                    .optionList![3],
+                                groupValue: controller.groupNo.value,
+                                onChanged: (value) {
+                                  controller.groupNo.value = value;
+                                },
+                                fillColor: WidgetStatePropertyAll(
+                                  controller.groupNo ==
+                                          controller
+                                              .allData[controller.count.value]
+                                              .optionList![3]
+                                      ? Colors.green
+                                      : Colors.grey,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const Spacer(),
@@ -288,21 +383,24 @@ class _QuizeScreenState extends State<QuizeScreen> {
                                 controller.countData();
                                 controller.groupNo.value = null;
                               }
-                              // controller.optionChange(controller.count.value);
                               if (controller.count.value == 9) {
                                 Get.toNamed("/result");
                                 controller.count.value = 0;
-                                print(
-                                    "====================== count home${controller.count.value}");
                               }
                             },
                             child: Container(
                               height: MediaQuery.sizeOf(context).height * 0.06,
                               width: MediaQuery.sizeOf(context).width * 0.45,
                               alignment: Alignment.center,
-                              decoration: const BoxDecoration(
-                                color: Color(0xff08d0f3),
-                                borderRadius: BorderRadius.all(
+                              margin: const EdgeInsets.symmetric(
+                                vertical: 8,
+                                horizontal: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: controller.groupNo.value != null
+                                    ? const Color(0xff08d0f3)
+                                    : Colors.grey,
+                                borderRadius: const BorderRadius.all(
                                   Radius.circular(10),
                                 ),
                               ),
@@ -316,10 +414,6 @@ class _QuizeScreenState extends State<QuizeScreen> {
                               ),
                             ),
                           )
-                          // ElevatedButton(
-                          //   onPressed: () {},
-                          //   child: const Text("Next"),
-                          // )
                         ],
                       )
                     ],
