@@ -357,7 +357,30 @@ class _QuizeScreenState extends State<QuizeScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.defaultDialog(
+                                  title: "Quite",
+                                  actions: [
+                                    Row(crossAxisAlignment: CrossAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          child: Text("No"),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Get.toNamed("/home");
+                                          },
+                                          child: Text("Yes"),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                  content: Text("Confirm Quite"));
+                            },
                             child: const Row(
                               children: [
                                 Icon(

@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
           //   ),
           // ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,9 +103,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontFamily: "barlow",
                   ),
                 ),
+                // Container(
+                //   height: MediaQuery.sizeOf(context).height * 0.04,
+                //   width: MediaQuery.sizeOf(context).width * 0.3,
+                //   alignment: Alignment.center,
+                //   child: Text(
+                //     "See All",
+                //     style: TextStyle(
+                //         color: Colors.blue.shade500,
+                //         fontSize: 18,
+                //         fontWeight: FontWeight.bold),
+                //   ),
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(5),
+                //     color: Colors.lightBlue.shade100,
+                //   ),
+                // ),
                 OutlinedButton(
                   onPressed: () {},
-                  child: const Text("See all"),
+                  child: const Text("See all",),
                 )
               ],
             ),
@@ -122,7 +138,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     print("============================== 0");
                     Get.toNamed('/quize');
                     Navigator.pushNamed(context, '/quize');
-                    homeController.getData(homeController.imageList[index]['code']);
+                    homeController
+                        .getData(homeController.imageList[index]['code']);
                     // homeController.count.value = 0;
                     // print("======================= id = ${ homeController.getData(homeController.imageList[index]['code'])}");
                   },
